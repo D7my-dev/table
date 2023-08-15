@@ -2,11 +2,47 @@
 <html dir="rtl">
 <head>
     <title>جدول المقررات</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </head>
 <body>
     <h1>جدول المقررات</h1>
-    <table border="1">
+    <table>
         <tr>
             <th>أيام الأسبوع</th>
             <th>اسم المقرر</th>
@@ -37,17 +73,19 @@
     </table>
 
     <h2>المدخلات</h2>
-    <table border="1" id="entriesTable">
-        <tr>
-            <th>أيام الأسبوع</th>
-            <th>اسم المقرر</th>
-            <th>وقت البداية</th>
-            <th>وقت النهاية</th>
-            <th>رقم الشعبة</th>
-            <th>رقم المبنى</th>
-            <th>رقم القاعة</th>
-        </tr>
-    </table>
+    <div id="content">
+        <table>
+            <tr>
+                <th>أيام الأسبوع</th>
+                <th>اسم المقرر</th>
+                <th>وقت البداية</th>
+                <th>وقت النهاية</th>
+                <th>رقم الشعبة</th>
+                <th>رقم المبنى</th>
+                <th>رقم القاعة</th>
+            </tr>
+        </table>
+    </div>
 
     <button onclick="printPDF()">طباعة PDF</button>
 
@@ -61,7 +99,7 @@
             var buildingNumber = document.getElementsByName("buildingNumber")[0].value;
             var roomNumber = document.getElementsByName("roomNumber")[0].value;
 
-            var entriesTable = document.getElementById("entriesTable");
+            var entriesTable = document.querySelector("#content table");
             var newRow = entriesTable.insertRow(-1);
             var cells = [];
 
