@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <title>جدول المقررات</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <h3>جدول المقررات</h3>
+    <table border="1">
+        <tr>
+            <th>اليوم</th>
+            <th>اسم المقرر</th>
+            <th>بداية المحاضرة</th>
+            <th>نهاية المحاضرة</th>
+            <th>رقم الشعبة</th>
+            <th>رقم المبنى</th>
+            <th>رقم القاعة</th>
+        </tr>
+        <tr>
+            <td>
+                <select name="day">
+                    <option value="الأحد">الأحد</option>
+                    <option value="الاثنين">الاثنين</option>
+                    <option value="الثلاثاء">الثلاثاء</option>
+                    <option value="الأربعاء">الأربعاء</option>
+                    <option value="الخميس">الخميس</option>
+                </select>
+            </td>
+            <td><input type="text" name="courseName"></td>
+            <td><input type="time" name="startTime"></td>
+            <td><input type="time" name="endTime"></td>
+            <td><input type="text" name="sectionNumber"></td>
+            <td><input type="text" name="roomNumber"></td>
+            <td><input type="text" name="HallNumber"></td>
+            <td><button onclick="addRow()">إضافة</button></td>
+        </tr>
+    </table>
+
+    <h2>المدخلات</h2>
+    <table border="1" id="entriesTable">
+        <tr>
+            <th>أيام الأسبوع</th>
+            <th>اسم المقرر</th>
+            <th>بداية المحاضرة</th>
+            <th>نهاية المحاضرة</th>
+            <th>رقم الشعبة</th>
+    <th>رقم المبنى </th>
+            <th>رقم القاعة</th>
+        </tr>
+    </table>
+    <button onclick="printPDF()">طباعة PDF</button>
+
+    <script>
+        function addRow() {
+            var day = document.getElementsByName("day")[0].value;
+            var courseName = document.getElementsByName("courseName")[0].value;
