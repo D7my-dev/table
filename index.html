@@ -5,13 +5,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </head>
 <body>
-    <h3>جدول المقررات</h3>
+    <h1>جدول المقررات</h1>
     <table border="1">
         <tr>
-            <th>اليوم</th>
+            <th>أيام الأسبوع</th>
             <th>اسم المقرر</th>
-            <th>بداية المحاضرة</th>
-            <th>نهاية المحاضرة</th>
+            <th>وقت البداية</th>
+            <th>وقت النهاية</th>
             <th>رقم الشعبة</th>
             <th>رقم المبنى</th>
             <th>رقم القاعة</th>
@@ -30,8 +30,8 @@
             <td><input type="time" name="startTime"></td>
             <td><input type="time" name="endTime"></td>
             <td><input type="text" name="sectionNumber"></td>
+            <td><input type="text" name="buildingNumber"></td>
             <td><input type="text" name="roomNumber"></td>
-            <td><input type="text" name="HallNumber"></td>
             <td><button onclick="addRow()">إضافة</button></td>
         </tr>
     </table>
@@ -41,16 +41,51 @@
         <tr>
             <th>أيام الأسبوع</th>
             <th>اسم المقرر</th>
-            <th>بداية المحاضرة</th>
-            <th>نهاية المحاضرة</th>
+            <th>وقت البداية</th>
+            <th>وقت النهاية</th>
             <th>رقم الشعبة</th>
-    <th>رقم المبنى </th>
+            <th>رقم المبنى</th>
             <th>رقم القاعة</th>
         </tr>
     </table>
+
     <button onclick="printPDF()">طباعة PDF</button>
 
     <script>
         function addRow() {
             var day = document.getElementsByName("day")[0].value;
             var courseName = document.getElementsByName("courseName")[0].value;
+            var startTime = document.getElementsByName("startTime")[0].value;
+            var endTime = document.getElementsByName("endTime")[0].value;
+            var sectionNumber = document.getElementsByName("sectionNumber")[0].value;
+            var buildingNumber = document.getElementsByName("buildingNumber")[0].value;
+            var roomNumber = document.getElementsByName("roomNumber")[0].value;
+
+            var entriesTable = document.getElementById("entriesTable");
+            var newRow = entriesTable.insertRow(-1);
+            var cells = [];
+
+            for (var i = 0; i < 7; i++) {
+                cells.push(newRow.insertCell(i));
+            }
+
+            cells[0].innerHTML = day;
+            cells[1].innerHTML = courseName;
+            cells[2].innerHTML = startTime;
+            cells[3].innerHTML = endTime;
+            cells[4].innerHTML = sectionNumber;
+            cells[5].innerHTML = buildingNumber;
+            cells[6].innerHTML = roomNumber;
+        }
+
+        function printPDF() {
+            var doc = new jsPDF();
+            var content = document.getElementById("content");
+            doc.fromHTML(content, 15, 15, {
+                'width': 170
+            });
+            doc.save('جدول_المقررات.pdf');
+        }
+    </script>
+</body>
+</html>
