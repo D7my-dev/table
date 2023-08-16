@@ -10,10 +10,17 @@
         table {
             border-collapse: collapse;
             width: 100%;
+            border-radius: 5px;
+            
         }
 
-        table, th, td {
-            border: 1px solid black;
+th{
+    background-color: #08847c;
+    color: white;
+}
+         th, td {
+            border: 1px solid black ;
+          
         }
 
         th, td {
@@ -21,17 +28,25 @@
             text-align: center;
         }
 
-        h1, h2 {
+        h1, h2 , h3{
             text-align: center;
+            color: #08847c;
         }
+        
+        
 
         button {
             margin: 10px;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #08847c;
             color: white;
             border: none;
             cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        buttonprint{
+            text-align: center;
         }
 
         button:hover {
@@ -41,13 +56,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </head>
 <body>
-    <h1>جدول المقررات</h1>
+    <h3>اضافه المقررات</h3>
     <table>
         <tr>
             <th>أيام الأسبوع</th>
             <th>اسم المقرر</th>
-            <th>وقت البداية</th>
-            <th>وقت النهاية</th>
+            <th>بداية المحاضرة</th>
+            <th>نهاية المحاضرة</th>
             <th>رقم الشعبة</th>
             <th>رقم المبنى</th>
             <th>رقم القاعة</th>
@@ -72,14 +87,14 @@
         </tr>
     </table>
 
-    <h2>المدخلات</h2>
+    <h3>الجدول</h3>
     <div id="content">
         <table>
             <tr>
                 <th>أيام الأسبوع</th>
                 <th>اسم المقرر</th>
-                <th>وقت البداية</th>
-                <th>وقت النهاية</th>
+                <th>بداية المحاضرة</th>
+                <th>نهاية المحاضرة</th>
                 <th>رقم الشعبة</th>
                 <th>رقم المبنى</th>
                 <th>رقم القاعة</th>
@@ -87,7 +102,7 @@
         </table>
     </div>
 
-    <button onclick="printPDF()">طباعة PDF</button>
+    <!button onclick="printPDF()">   </!button>
 
     <script>
         function addRow() {
@@ -125,6 +140,9 @@
             doc.save('جدول_المقررات.pdf');
         }
     </script>
-    <button type="button" onclick="print()">طباعة</button>
+    <button id="buttonprint" type="buttonprint" onclick="print()">طباعة</button>
+<p>تم تصميم هذا الجدول للتسهيل على المتدربين لتصميم جداولهم وطباعتها بشكل سلسل وسهل&nbsp;</p>
+    <p>للمزيد تابعنا على التليجرام <a href="https://t.me/rationingg" target="_blank" rel="noopener noreferrer">قناة تقنين </a></p>
+    
 </body>
 </html>
