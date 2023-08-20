@@ -114,6 +114,50 @@ th{
 
     <!button onclick="printPDF()">   </!button>
 
+    
+<script>
+function addRow() {
+  var table = document.getElementsByTagName('table')[1];
+  var newRow = table.insertRow(-1);
+  var days = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
+  
+  for (var i = 0; i < 6; i++) {
+    var cell = newRow.insertCell(i);
+    if (i === 0) {
+      var select = document.createElement('select');
+      for (var j = 0; j < days.length; j++) {
+        var option = document.createElement('option');
+        option.value = days[j];
+        option.text = days[j];
+        select.appendChild(option);
+      }
+      cell.appendChild(select);
+    } else if (i === 2) {
+      var input = document.createElement('input');
+      input.type = "time";
+      cell.appendChild(input);
+    } else {
+      var input = document.createElement('input');
+      input.type = "text";
+      cell.appendChild(input);
+    }
+  }
+  
+  var deleteCell = newRow.insertCell(6);
+  var deleteButton = document.createElement('button');
+  deleteButton.innerHTML = "حذف";
+  deleteButton.onclick = function() {
+    table.deleteRow(newRow.rowIndex);
+  };
+  deleteCell.appendChild(deleteButton);
+}
+
+function generatePDF() {
+  // ستكون هذه الدالة مسؤولة عن إنشاء ملف PDF من البيانات المدخلة
+  // يمكن استخدام مكتبات مثل jsPDF لهذا الغرض
+}
+</script>
+    
     <script>
         function addRow() {
             var day = document.getElementsByName("day")[0].value;
